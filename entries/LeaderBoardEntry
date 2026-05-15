@@ -1,0 +1,31 @@
+{
+  "name": "LeaderboardEntry",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "week_start": {
+      "type": "string",
+      "format": "date",
+      "description": "Monday of the week (ISO date)"
+    },
+    "points": {
+      "type": "number",
+      "default": 0
+    },
+    "perfect_scores": {
+      "type": "number",
+      "default": 0
+    },
+    "rewarded_100_tokens": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this user received the weekly top-scorer 100 token bonus"
+    }
+  },
+  "required": [
+    "user_email",
+    "week_start"
+  ]
+}

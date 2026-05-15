@@ -1,0 +1,79 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email linked to auth user"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date"
+    },
+    "location": {
+      "type": "string",
+      "description": "City or state"
+    },
+    "class_level": {
+      "type": "string",
+      "enum": [
+        "JSS1",
+        "JSS2",
+        "JSS3",
+        "SS1",
+        "SS2",
+        "SS3"
+      ]
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "subscription_plan": {
+      "type": "string",
+      "enum": [
+        "free",
+        "monthly",
+        "yearly"
+      ],
+      "default": "free"
+    },
+    "subscription_expires": {
+      "type": "string",
+      "format": "date",
+      "description": "Subscription expiry date"
+    },
+    "daily_questions_used": {
+      "type": "number",
+      "default": 0
+    },
+    "daily_reset_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "total_quizzes_taken": {
+      "type": "number",
+      "default": 0
+    },
+    "average_score": {
+      "type": "number",
+      "default": 0
+    },
+    "credit_tokens": {
+      "type": "number",
+      "default": 0,
+      "description": "Earned credit tokens \u2014 redeemable for airtime/data at 500"
+    }
+  },
+  "required": [
+    "user_email"
+  ]
+}

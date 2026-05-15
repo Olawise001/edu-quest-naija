@@ -1,0 +1,57 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "yearly"
+      ]
+    },
+    "amount_paid": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string",
+      "default": "NGN"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "paystack",
+        "flutterwave",
+        "manual"
+      ]
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "expired",
+        "cancelled"
+      ],
+      "default": "active"
+    }
+  },
+  "required": [
+    "user_email",
+    "plan",
+    "start_date",
+    "end_date"
+  ]
+}

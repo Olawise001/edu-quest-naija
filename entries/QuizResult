@@ -1,0 +1,86 @@
+{
+  "name": "QuizResult",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email of the student"
+    },
+    "class_level": {
+      "type": "string",
+      "enum": [
+        "JSS1",
+        "JSS2",
+        "JSS3",
+        "SS1",
+        "SS2",
+        "SS3"
+      ]
+    },
+    "subject": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "Easy",
+        "Medium",
+        "Hard"
+      ]
+    },
+    "total_questions": {
+      "type": "number"
+    },
+    "correct_answers": {
+      "type": "number"
+    },
+    "wrong_answers": {
+      "type": "number"
+    },
+    "score_percentage": {
+      "type": "number"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "time_taken_seconds": {
+      "type": "number"
+    },
+    "answers_data": {
+      "type": "array",
+      "description": "Array of question/answer pairs with explanations",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question_text": {
+            "type": "string"
+          },
+          "selected_answer": {
+            "type": "string"
+          },
+          "correct_answer": {
+            "type": "string"
+          },
+          "is_correct": {
+            "type": "boolean"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "user_email",
+    "class_level",
+    "subject",
+    "difficulty",
+    "total_questions",
+    "correct_answers",
+    "score_percentage"
+  ]
+}

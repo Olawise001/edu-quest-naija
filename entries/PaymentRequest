@@ -1,0 +1,51 @@
+{
+  "name": "PaymentRequest",
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string"
+    },
+    "user_name": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "string",
+      "enum": [
+        "monthly",
+        "yearly"
+      ]
+    },
+    "amount": {
+      "type": "number"
+    },
+    "bank_account_number": {
+      "type": "string"
+    },
+    "bank_name": {
+      "type": "string"
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "user_email",
+    "plan",
+    "amount"
+  ]
+}
