@@ -71,7 +71,7 @@ export default function Register() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin + "/dashboard",
+        redirectTo: `${window.location.origin}/dashboard`,
       },
     });
 
@@ -98,6 +98,7 @@ export default function Register() {
       }
     >
       <Button
+        type="button"
         variant="outline"
         className="w-full h-12 text-sm font-medium mb-6"
         onClick={handleGoogle}
@@ -142,7 +143,6 @@ export default function Register() {
           <div className="relative">
             <Mail
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-              aria-hidden="true"
             />
 
             <Input
@@ -167,7 +167,6 @@ export default function Register() {
           <div className="relative">
             <Lock
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-              aria-hidden="true"
             />
 
             <Input
@@ -191,7 +190,6 @@ export default function Register() {
           <div className="relative">
             <Lock
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-              aria-hidden="true"
             />
 
             <Input
@@ -225,4 +223,3 @@ export default function Register() {
     </AuthLayout>
   );
 }
-  export default Register;
