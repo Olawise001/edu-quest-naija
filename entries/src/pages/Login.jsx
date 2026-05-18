@@ -16,12 +16,11 @@ import {
 import AuthLayout from "@/components/AuthLayout";
 import GoogleIcon from "@/components/GoogleIcon";
 
-export default function Login() {
+const Login = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -125,7 +124,6 @@ export default function Login() {
           <div className="relative">
             <Mail
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-              aria-hidden="true"
             />
 
             <Input
@@ -159,7 +157,6 @@ export default function Login() {
           <div className="relative">
             <Lock
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-              aria-hidden="true"
             />
 
             <Input
@@ -192,4 +189,6 @@ export default function Login() {
       </form>
     </AuthLayout>
   );
-}
+};
+
+export default Login;
