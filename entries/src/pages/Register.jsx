@@ -1,3 +1,4 @@
+jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,7 +18,7 @@ import {
 import AuthLayout from "@/components/AuthLayout";
 import GoogleIcon from "@/components/GoogleIcon";
 
-export default function Register() {
+const Register = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -26,7 +27,6 @@ export default function Register() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -68,15 +68,22 @@ export default function Register() {
   };
 
   const handleGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/dashboard`,
-      },
-    });
+    setError("");
 
-    if (error) {
-      setError(error.message);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+    } catch (err) {
+      setError(err.message || "Google sign in failed");
     }
   };
 
@@ -183,7 +190,7 @@ export default function Register() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="confirm">
+          <Label htmlFor="confirmPassword">
             Confirm Password
           </Label>
 
@@ -193,7 +200,7 @@ export default function Register() {
             />
 
             <Input
-              id="confirm"
+              id="confirmPassword"
               type="password"
               autoComplete="new-password"
               placeholder="••••••••"
@@ -222,4 +229,6 @@ export default function Register() {
       </form>
     </AuthLayout>
   );
-}
+};
+
+export default Register;

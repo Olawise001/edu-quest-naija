@@ -1,3 +1,4 @@
+```jsx
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "sonner";
 
@@ -6,12 +7,10 @@ import { queryClientInstance } from "@/lib/query-client";
 
 import {
   BrowserRouter as Router,
-  Route,
   Routes,
+  Route,
   Navigate,
 } from "react-router-dom";
-
-import PageNotFound from "./lib/PageNotFound";
 
 import {
   AuthProvider,
@@ -20,6 +19,8 @@ import {
 
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AppLayout from "@/components/layout/AppLayout";
+
+import PageNotFound from "./lib/PageNotFound";
 
 // Pages
 import Landing from "@/pages/Landing";
@@ -36,25 +37,30 @@ import Register from "@/pages/Register";
 import ForgotPassword from "@/pages/ForgotPassword";
 import ResetPassword from "@/pages/ResetPassword";
 
+const LoadingScreen = () => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-background">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+
+        <p className="text-sm text-muted-foreground">
+          Loading QuizNaija...
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const AuthenticatedApp = () => {
   const { loading } = useAuth();
 
   if (loading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-
-          <p className="text-sm text-muted-foreground">
-            Loading QuizNaija...
-          </p>
-        </div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (
     <Routes>
+
       {/* Public Routes */}
       <Route element={<AppLayout />}>
         <Route path="/" element={<Landing />} />
@@ -63,13 +69,19 @@ const AuthenticatedApp = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
       </Route>
 
-      {/* Auth Routes */}
+      {/* Authentication Routes */}
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+
+      <Route
+        path="/register"
+        element={<Register />}
+      />
+
       <Route
         path="/forgot-password"
         element={<ForgotPassword />}
       />
+
       <Route
         path="/reset-password"
         element={<ResetPassword />}
@@ -116,11 +128,12 @@ const AuthenticatedApp = () => {
         </Route>
       </Route>
 
-      {/* 404 */}
+      {/* 404 Route */}
       <Route
         path="*"
         element={<PageNotFound />}
       />
+
     </Routes>
   );
 };
@@ -129,6 +142,7 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
+
         <Router>
           <AuthenticatedApp />
         </Router>
@@ -139,8 +153,11 @@ function App() {
           position="top-right"
           richColors
         />
+
       </QueryClientProvider>
     </AuthProvider>
   );
 }
+
 export default App;
+```
