@@ -50,15 +50,21 @@ export default function Login() {
   };
 
   const handleGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: window.location.origin + "/dashboard",
-      },
-    });
+    setError("");
 
-    if (error) {
-      setError(error.message);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+    } catch (err) {
+      setError(err.message || "Google sign in failed");
     }
   };
 
@@ -80,6 +86,7 @@ export default function Login() {
       }
     >
       <Button
+        type="button"
         variant="outline"
         className="w-full h-12 text-sm font-medium mb-6"
         onClick={handleGoogle}
